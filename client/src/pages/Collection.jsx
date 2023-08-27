@@ -8,7 +8,7 @@ import { HiChevronDoubleLeft, HiChevronDoubleRight } from 'react-icons/hi';
 import Filter_Select from "../components/Filter_Select"
 
 
-export default function Collection(){
+export default function Collection(props){
 
     const [clothes, setClothes] = React.useState([]);
     const [page, setPage] = React.useState(1);
@@ -18,18 +18,23 @@ export default function Collection(){
         size: "", color: "", category: "", sort: ""
     });
 
+    const search = props.search || "";
+    // const [search, setSearch] = React.useState( props.search || "")
+
+    console.log("collection component search is ", props.search);
+
     React.useEffect(() => {
         async function fetchData(){
             const {size, color, category, sort} = queryData;
             const result = await axios.get(
-                `/api/v1/product?page=${page}&limit=${limit}&color=${color}&size=${size}&category=${category}&sort=${sort}`
+                `/api/v1/product?page=${page}&limit=${limit}&color=${color}&size=${size}&category=${category}&sort=${sort}&search=${search}`
             );
         
            setClothes(result.data.products)
            setNumOfPages(Math.ceil(result.data.numOfProducts/limit))
         }
         fetchData();
-    }, [page, queryData])
+    }, [page, queryData, search])
     
 
     const clothesElements = clothes.map(item => {return(
@@ -81,12 +86,13 @@ export default function Collection(){
                 color: "all", size: "all", category: "all", sort:"a to z"
             }
         )
+        // setSearch("")
     }
 
 
     return(
         <div className="collection">
-             <h1>Men's clothing</h1>
+             <h1>OUR STORE</h1>
 
              <div className = "filter_container">
                 <Filter_Select
@@ -123,11 +129,16 @@ export default function Collection(){
                 </div>
              </div>
 
-            <div className="collection_container">
-                {clothesElements}
-            </div>
+            {clothes.length == 0 && <div className="no_item_found" >
+                No Item Found
+            </div>}
 
-            <div className='pagination_container'>
+
+           {clothes.length > 0 &&  <div className="collection_container">
+                {clothesElements}
+            </div>}
+
+            {clothes.length > 0  && <div className='pagination_container'>
                 <div className='pagination'>
                     <button type='button' className='prev-btn' onClick={prevPage}>
                         <HiChevronDoubleLeft />
@@ -154,7 +165,7 @@ export default function Collection(){
                     </button>
 
                 </div>
-        </div>
+            </div>}
         </div>
     )
 }

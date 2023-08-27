@@ -10,6 +10,7 @@ function ContextProvider({children}){
     const [cart, setCart] = React.useState([])
     const [order, setOrder] = React.useState({})
     const [subTotal, setSubTotal] = React.useState()
+    const[search, setSearch] = React.useState()
 
     const saveUser = (user) => {
         console.log("saving user ", user)
@@ -158,6 +159,10 @@ function ContextProvider({children}){
     //     showOrder()
     // }, [user])
 
+    const updateSearch = (search) => {
+        setSearch(search);
+    }
+
     return(
         <Provider value = {{
             user: user,
@@ -173,7 +178,10 @@ function ContextProvider({children}){
             removeItem : removeItem,
             changeQty : changeQty,
             emptyCart: emptyCart,
-            updateOrder: updateOrder
+            updateOrder: updateOrder,
+
+            search: search,
+            updateSearch: updateSearch
 
         }}
            

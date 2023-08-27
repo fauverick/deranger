@@ -14,6 +14,7 @@ import Dashboard from "./pages/Dashboard"
 import OrderPlaced from "./pages/OrderPlaced"
 import MyOrders from "./pages/MyOrders"
 import Breadcrumb from "./components/BreadCrumb"
+import CollectionPage from "./pages/CollectionPage"
 
 
 function App() {
@@ -28,7 +29,7 @@ function App() {
         <Route path = "/register" element = {<Register/>}/>
         <Route path = "/men"> 
           {/* "url/men" will leads to Collection, "url/men/id" will lead to single item */}
-          <Route index element = {<Collection/>}/>  
+          <Route index element = {<CollectionPage/>}/>  
           <Route path = ":id" element = {<Item/>}/>
         </Route>
         <Route path = "/cart" element = {<Cart/>}/>

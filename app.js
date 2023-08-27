@@ -73,14 +73,15 @@ app.use('/api/v1/review', reviewRoute)
 app.use('/api/v1/cart', cartItemRoute)
 
 
-//NEED THESE TWO MIDDLEWARES TO DISPLAY ERROR
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, './client/dist', 'index.html'))
+})
+
+
+//NEED THESE TWO MIDDLEWARES TO DISPLAY ERROR, PLACE THIS UNDER the app.get() to connect to client
 app.use(notFoundMiddleware) //THE ORDER IS IMPORTANT, NOT FOUND MUST BE PLACED BEFORE ERRORHANDLER because errorhandler only works with existing route, if a route does not exist it needs to run through the notfound middleware first
 app.use(errorHandlerMiddleware)
 
-
-app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, './client/dist', 'index.html'))
-})
 
 const start = async () => {
     try {

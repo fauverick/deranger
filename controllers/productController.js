@@ -13,8 +13,15 @@ const createProduct = async(req, res) => {
 
 const getAllProducts = async (req, res) => {
 
-    const {color, size, category, sort} = req.query;
+    const {color, size, category, sort, search} = req.query;
+
+    console.log("query is ", req.query);
+    
     const queryObject = {
+    }
+
+    if(search !== ""){
+        queryObject.name = {$regex: search, $options: 'i'} //$options: 'i' means the filter for the search field is not case-sensitive, $regex is to find data that contains the search field
     }
 
     if(color && color !== 'all'){
