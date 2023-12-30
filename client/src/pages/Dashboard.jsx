@@ -43,7 +43,6 @@ export default function Dashboard(){
                 {...prevData, [name]: value}
             )
         } )
-        console.log(userData)
     }
 
     React.useEffect(() => {
@@ -52,7 +51,6 @@ export default function Dashboard(){
             try{
                 const {data} = await axios.get("/api/v1/user/showCurrentUser")
                 const{first_name, last_name, name, email, _id} = data.user;
-                console.log("data is ", data)
                 setUserData({
                     first_name,
                     last_name,

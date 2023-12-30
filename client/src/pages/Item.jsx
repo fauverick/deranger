@@ -1,9 +1,8 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import clothes from "../clothes";
 import { ContextConsumer } from "../context/Context";
 import { nanoid } from 'nanoid'
-import Breadcrumb from "../components/BreadCrumb";
+import Breadcrumb from "../components/Breadcrumb"
 import axios from "axios";
 import Review from "../components/Review";
 import Star from "../components/Star";
@@ -37,11 +36,11 @@ export default function Item(){
 
     function handleChange(event){
         const {name, value} = event.target;
-        console.log(name, value);
+        // console.log(name, value);
         setFormData(prevForm => {
             return ({...prevForm, [name] : value})
         })
-        console.log("formdata: ", formData.size);
+        // console.log("formdata: ", formData.size);
     }
 
     const imageElements = item.url.map(image => (
@@ -83,11 +82,11 @@ export default function Item(){
     })
 
 
-    console.log("the final last item is", item)
+    // console.log("the final last item is", item)
     return(
         <div className="product">
 
-            <Breadcrumb/>
+            <Breadcrumb itemName = {item.name}/>
 
             <div className="product_container">
                 <div className="product_img">
@@ -165,7 +164,7 @@ export default function Item(){
                                 }
                             }
 
-                            console.log("id in item is ", id)
+                            // console.log("id in item is ", id)
                             return(
                                 <div>
                                     <button onClick={() =>addToCart()}>

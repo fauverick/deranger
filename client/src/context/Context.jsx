@@ -1,7 +1,6 @@
 import React from "react";
 import { useContext, useEffect, useState } from "react";
 const {Provider, Consumer} = React.createContext();
-import clothes from "../clothes";
 import axios from "axios";
 
 function ContextProvider({children}){
