@@ -22,7 +22,7 @@ jobs:
 
       -
         name: Build Docker Image
-        run: docker build -t fauverick/deranger-cicd:latest .
+        run: sudo docker build -t fauverick/deranger-cicd:latest .
       -
         name: Push to Docker Hub
-        run: docker push fauverick/deranger-cicd:latest
+        run: sudo docker push fauverick/deranger-cicd:latest
