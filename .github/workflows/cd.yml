@@ -19,4 +19,5 @@ jobs:
         run: sudo docker rm -f deranger-cicd-container || true
       -
         name: Run Docker Container
-        run: sudo docker run -d -p 4000:80 --name deranger-cicd-container fauverick/deranger-cicd:latest & 
+        run: |
+            sudo docker run -d -p 4000:4000 --name deranger-cicd-container fauverick/deranger-cicd:latest -e JWT_SECRET="jwtSecret" -e JWT_LIFETIME="1d" -e PORT="4000"

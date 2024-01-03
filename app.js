@@ -85,7 +85,7 @@ app.use(errorHandlerMiddleware)
 
 const start = async () => {
     try {
-        await connectDB(process.env.MONGO_URI)
+        await connectDB('mongodb+srv://fauverick:1234@fauverick.y3bz2tg.mongodb.net/DERANGER?retryWrites=true&w=majority')
         app.listen(
             port, () => {
                 console.log(`Server listening on port ${port}`)
